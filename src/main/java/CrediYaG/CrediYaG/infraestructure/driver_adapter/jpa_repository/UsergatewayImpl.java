@@ -2,7 +2,7 @@ package CrediYaG.CrediYaG.infraestructure.driver_adapter.jpa_repository;
 
 import CrediYaG.CrediYaG.domain.model.User;
 import CrediYaG.CrediYaG.domain.model.getaways.UserGetaway;
-import CrediYaG.CrediYaG.infraestructure.mapper.UserMapper;
+import CrediYaG.CrediYaG.infraestructure.driver_adapter.mapper.UserMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 

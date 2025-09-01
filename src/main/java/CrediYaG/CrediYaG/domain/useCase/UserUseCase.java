@@ -8,7 +8,7 @@ import lombok.RequiredArgsConstructor;
 public class UserUseCase {
     private final UserGetaway userGetaway;
     public User saveUser(User user) throws Exception {
-        if(user.getIdentifier()== null){
+        if(user.getIdentify()== null){
             throw new Exception();
         }
         return userGetaway.save(user);
@@ -27,14 +27,8 @@ public class UserUseCase {
             return userGetaway.searchId(id);
         }catch (RuntimeException e){
             System.out.println(e.getMessage());
-            return new User(userDatat.getIdentify(), userDatat.getName(), userDatat.getLastName(), userDatat.getEmail(), userDatat.getTypeId(), userDatat.getSalary(), userDatat.getStatus());
+            return new User();
         }
     }
-    public void editId(Long id){
-        try{
-            userGetaway.editId(id);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
+
 }

@@ -26,5 +26,6 @@ public class UserData {
     private String email;
     private int salary;
     private int status;
+    private int rol;
 }
 

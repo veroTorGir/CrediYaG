@@ -1,4 +1,4 @@
-package CrediYaG.CrediYaG.infraestructure.mapper;
+package CrediYaG.CrediYaG.infraestructure.driver_adapter.mapper;
 
 import CrediYaG.CrediYaG.domain.model.User;
 import CrediYaG.CrediYaG.infraestructure.driver_adapter.jpa_repository.UserData;
@@ -15,7 +15,8 @@ public class UserMapper {
                 userData.getLastName(),
                 userData.getEmail(),
                 userData.getSalary(),
-                userData.getStatus()
+                userData.getStatus(),
+                userData.getRol()
         );
     }
 
@@ -27,7 +28,8 @@ public class UserMapper {
                 user.getLastName(),
                 user.getEmail(),
                 user.getSalary(),
-                user.getStatus()
+                user.getStatus(),
+                user.getRol()
         );
     }
 }
