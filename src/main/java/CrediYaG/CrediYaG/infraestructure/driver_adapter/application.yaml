@@ -1,12 +1,7 @@
-spring:
-  datasource:
-    url: jdbc:postgresql://localhost:8080/CrediYaG
-    password: admin
-    username: admin
-  jpa:
-    hibernate:
-      ddl-auto:update
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.PostgresSQL9Dialect
-    show-sql: true
+spring.application.name=CrediYaG
+
+spring.r2dbc.url=r2dbc:sqlserver://localhost:1433;database=crediya_bd
+spring.r2dbc.username=admin
+spring.r2dbc.password=admin
+
+spring.r2dbc.show-sql=true

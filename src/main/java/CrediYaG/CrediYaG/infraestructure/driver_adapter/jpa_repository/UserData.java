@@ -1,31 +1,39 @@
 package CrediYaG.CrediYaG.infraestructure.driver_adapter.jpa_repository;
 
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Table;
+import org.springframework.data.relational.core.mapping.Column;
 
-@Entity
-@Table(name = "user_table")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Table("user_table")
 public class UserData {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long identify;
 
-    @Column(nullable = false)
+    @Column("type_id")
     private String typeId;
 
-    @Column(length = 100, nullable = false)
+    @Column("name")
     private String name;
 
+    @Column("last_name")
     private String lastName;
+
+    @Column("email")
     private String email;
+
+    @Column("salary")
     private int salary;
+
+    @Column("status")
     private int status;
+
+    @Column("rol")
     private int rol;
 }
-

@@ -1,9 +1,10 @@
 package CrediYaG.CrediYaG.domain.model.getaways;
 
 import CrediYaG.CrediYaG.domain.model.User;
+import reactor.core.publisher.Mono;
 
 public interface UserGetaway {
-    User save(User user);
-    void delete (Long id);
-    User searchId(Long id);
+    Mono<User> save(User user);
+    Mono<Void> delete(Long id);
+    Mono<User> searchId(Long id);
 }

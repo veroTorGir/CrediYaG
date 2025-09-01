@@ -5,34 +5,29 @@ import CrediYaG.CrediYaG.domain.model.getaways.UserGetaway;
 import CrediYaG.CrediYaG.infraestructure.driver_adapter.mapper.UserMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
+import reactor.core.publisher.Mono;
 
 @Repository
 @RequiredArgsConstructor
-public class UsergatewayImpl implements
-        UserGetaway{
+class UserGatewayImpl implements UserGetaway {
 
     private final UserMapper userMapper;
-    private final UserDataJPARepository userDataJPARepository;
+    private final UserDataRepository userDataRepository;
 
     @Override
-    public User save(User user) {
-        UserData userData = userMapper.toData(user);
-
-        UserData savedData = userDataJPARepository.save(userData);
-
-        return userMapper.toUser(savedData);
-    };
-
-    @Override
-    public void delete(Long id) {
-        userDataJPARepository.deleteById(id);
+    public Mono<User> save(User user) {
+        return userDataRepository.save(userMapper.toEntity(user))
+                .map(userMapper::toDomain);
     }
 
     @Override
-    public User searchId(Long id) {
-        var user = userDataJPARepository.findById(id);
-
-        return userMapper.toUser(user.get());
+    public Mono<Void> delete(Long id) {
+        return userDataRepository.deleteById(id);
     }
 
+    @Override
+    public Mono<User> searchId(Long id) {
+        return userDataRepository.findById(id)
+                .map(userMapper::toDomain);
+    }
 }

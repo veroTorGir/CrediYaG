@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class UserMapper {
 
-    public User toUser(UserData userData) {
+    public User toDomain(UserData userData) {
         return new User(
                 userData.getIdentify(),
                 userData.getTypeId(),
@@ -20,7 +20,7 @@ public class UserMapper {
         );
     }
 
-    public UserData toData(User user) {
+    public UserData toEntity(User user) {
         return new UserData(
                 user.getIdentify(),
                 user.getTypeId(),
@@ -33,4 +33,3 @@ public class UserMapper {
         );
     }
 }
-
