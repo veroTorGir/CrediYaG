@@ -1,15 +1,15 @@
-package CrediYaG.CrediYaG.infraestructure.driver_adapter.jpa_repository;
+package CrediYaG.CrediYaG.infraestructure.repository;
 
 import CrediYaG.CrediYaG.domain.model.User;
-import CrediYaG.CrediYaG.domain.model.getaways.UserGetaway;
-import CrediYaG.CrediYaG.infraestructure.driver_adapter.mapper.UserMapper;
+import CrediYaG.CrediYaG.domain.model.gateways.UserGateway;
+import CrediYaG.CrediYaG.infraestructure.mapper.UserMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import reactor.core.publisher.Mono;
 
 @Repository
 @RequiredArgsConstructor
-class UserGatewayImpl implements UserGetaway {
+class UserGatewayImpl implements UserGateway {
 
     private final UserMapper userMapper;
     private final UserDataRepository userDataRepository;
@@ -29,5 +29,10 @@ class UserGatewayImpl implements UserGetaway {
     public Mono<User> searchId(Long id) {
         return userDataRepository.findById(id)
                 .map(userMapper::toDomain);
+    }
+
+    @Override
+    public Mono<User> findByEmail(String email) {
+        return null;
     }
 }

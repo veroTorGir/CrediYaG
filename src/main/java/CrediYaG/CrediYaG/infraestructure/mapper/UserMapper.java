@@ -1,7 +1,7 @@
-package CrediYaG.CrediYaG.infraestructure.driver_adapter.mapper;
+package CrediYaG.CrediYaG.infraestructure.mapper;
 
 import CrediYaG.CrediYaG.domain.model.User;
-import CrediYaG.CrediYaG.infraestructure.driver_adapter.jpa_repository.UserData;
+import CrediYaG.CrediYaG.infraestructure.repository.UserData;
 import org.springframework.stereotype.Component;
 
 @Component

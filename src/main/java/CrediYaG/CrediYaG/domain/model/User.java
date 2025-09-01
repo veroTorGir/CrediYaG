@@ -19,6 +19,7 @@ public class User {
     private int salary;
     private int status;
     private int rol;
+    private String password;
 
 
 

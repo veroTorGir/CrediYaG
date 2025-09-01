@@ -1,15 +1,15 @@
 package CrediYaG.CrediYaG.domain.useCase;
 
 import CrediYaG.CrediYaG.domain.model.User;
-import CrediYaG.CrediYaG.domain.model.getaways.UserGetaway;
+import CrediYaG.CrediYaG.domain.model.gateways.UserGateway;
 
 
 import reactor.core.publisher.Mono;
 
 public class UserUseCase {
-    private final UserGetaway userGetaway;
+    private final UserGateway userGetaway;
 
-    public UserUseCase(UserGetaway userGetaway) {
+    public UserUseCase(UserGateway userGetaway) {
         this.userGetaway = userGetaway;
     }
 
@@ -27,4 +27,10 @@ public class UserUseCase {
     public Mono<User> searchId(Long id) {
         return userGetaway.searchId(id);
     }
+
+    public Mono<Boolean> authenticateAdmin(String email, String password) {
+        return userGetaway.findByEmail(email)
+                .map(user -> user.getPassword().equals(password) && user.getRol() == 1);
+    }
+
 }

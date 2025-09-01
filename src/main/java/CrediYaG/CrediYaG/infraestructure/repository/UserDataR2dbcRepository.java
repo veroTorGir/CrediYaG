@@ -1,4 +1,4 @@
-package CrediYaG.CrediYaG.infraestructure.driver_adapter.jpa_repository;
+package CrediYaG.CrediYaG.infraestructure.repository;
 
 
 import org.springframework.data.repository.reactive.ReactiveCrudRepository;

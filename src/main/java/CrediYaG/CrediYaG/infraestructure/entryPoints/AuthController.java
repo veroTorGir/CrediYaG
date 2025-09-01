@@ -1,4 +1,4 @@
-package CrediYaG.CrediYaG.infraestructure.driver_adapter.entry_points;
+package CrediYaG.CrediYaG.infraestructure.entryPoints;
 
 import lombok.Data;
 import org.springframework.http.ResponseEntity;
