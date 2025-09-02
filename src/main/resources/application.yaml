@@ -1,7 +1,0 @@
-spring.application.name=CrediYaG
-
-spring.r2dbc.url=r2dbc:sqlserver://localhost:1433;database=crediya_bd
-spring.r2dbc.username=admin
-spring.r2dbc.password=admin
-
-spring.r2dbc.show-sql=true

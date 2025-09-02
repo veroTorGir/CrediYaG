@@ -5,7 +5,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
-import org.springframework.data.relational.core.mapping.Column;
 
 @Data
 @AllArgsConstructor
@@ -14,26 +13,14 @@ import org.springframework.data.relational.core.mapping.Column;
 public class UserData {
 
     @Id
-    private Long identify;
+    private Long identify;      // 👈 Este es el ID primario
 
-    @Column("type_id")
     private String typeId;
-
-    @Column("name")
     private String name;
-
-    @Column("last_name")
     private String lastName;
-
-    @Column("email")
     private String email;
-
-    @Column("salary")
+    private String password;
     private int salary;
-
-    @Column("status")
     private int status;
-
-    @Column("rol")
     private int rol;
 }
