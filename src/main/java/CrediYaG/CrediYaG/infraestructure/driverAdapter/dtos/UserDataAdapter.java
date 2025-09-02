@@ -1,45 +1,47 @@
-package CrediYaG.CrediYaG.infraestructure.repository;
+package CrediYaG.CrediYaG.infraestructure.driverAdapter.dtos;
 
 import CrediYaG.CrediYaG.domain.model.User;
 import CrediYaG.CrediYaG.domain.model.gateways.UserGateway;
 import CrediYaG.CrediYaG.infraestructure.mapper.UserMapper;
+import CrediYaG.CrediYaG.infraestructure.repository.UserData;
+import CrediYaG.CrediYaG.infraestructure.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Component;
 import reactor.core.publisher.Mono;
 
-@Repository
+@Component
 @RequiredArgsConstructor
-public class UserGatewayImpl implements UserGateway {
+public class UserDataAdapter implements UserGateway {
 
+    private final UserRepository userRepository;
     private final UserMapper userMapper;
-    private final UserRepository userDataRepository;
 
     @Override
     public Mono<User> saveUser(User user) {
-        // Guardar usuario (puedes delegar al otro método)
-        return save(user);
-    }
-
-    @Override
-    public Mono<User> save(User user) {
-        return userDataRepository.save(userMapper.toData(user))
+        UserData userData = userMapper.toData(user);
+        return userRepository.save(userData)
                 .map(userMapper::toDomain);
     }
 
     @Override
+    public Mono<User> save(User user) {
+        return saveUser(user);
+    }
+
+    @Override
     public Mono<Void> delete(Long id) {
-        return userDataRepository.deleteById(id);
+        return userRepository.deleteById(id);
     }
 
     @Override
     public Mono<User> searchId(Long id) {
-        return userDataRepository.findById(id)
+        return userRepository.findById(id)
                 .map(userMapper::toDomain);
     }
 
     @Override
     public Mono<User> findByEmail(String email) {
-        return userDataRepository.findByEmail(email)
+        return userRepository.findByEmail(email)
                 .map(userMapper::toDomain);
     }
 }
