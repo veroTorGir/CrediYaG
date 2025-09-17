@@ -20,17 +20,9 @@ public class UserUseCase {
         return userGateway.findByEmail(user.getEmail())
                 .flatMap(existingUser -> Mono.error(new UserException("El correo electrónico ya está registrado")))
                 .switchIfEmpty(
-                        userGateway.save(user)
+                        userGateway.saveUser(user)
                                 .cast(User.class) // o map para conversión personalizada
                 );
-    }
-
-    public Mono<Void> deleteForId(Long id) {
-        return userGateway.delete(id);
-    }
-
-    public Mono<User> searchId(Long id) {
-        return userGateway.searchId(id);
     }
 
     public Mono<Boolean> authenticateAdmin(String email, String password) {

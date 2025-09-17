@@ -51,7 +51,6 @@ public class UserMapper {
         );
     }
 
-    // ✅ MÉTODO NUEVO: Convierte UserRequest -> User
     public User toDomain(UserRequest request) {
         return new User(
                 request.getIdentify(),

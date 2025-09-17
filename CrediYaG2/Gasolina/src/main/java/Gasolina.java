@@ -1,4 +1,5 @@
-package PACKAGE_NAME;
+public abstract Gasolina {
 
-public class Gasolina {
+    protected float valGalon;
+
 }

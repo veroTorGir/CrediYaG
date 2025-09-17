@@ -1,10 +1,11 @@
-package CrediYaG.CrediYaG.infraestructure.entryPoints;
+package CrediYaG.CrediYaG.infraestructure.entryPoints.Controller;
 
 import CrediYaG.CrediYaG.domain.model.User;
 import CrediYaG.CrediYaG.domain.model.exceptions.UserCreationException;
 import CrediYaG.CrediYaG.domain.useCase.UserUseCase;
 import CrediYaG.CrediYaG.infraestructure.driverAdapter.dtos.userdto.UserRequest;
 import CrediYaG.CrediYaG.infraestructure.driverAdapter.dtos.userdto.UserResponse;
+import CrediYaG.CrediYaG.infraestructure.entryPoints.AuthService;
 import CrediYaG.CrediYaG.infraestructure.mapper.UserMapper;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -39,5 +40,14 @@ public class UserController {
                     log.error("Error al registrar usuario: {}", e.getMessage(), e);
                     return Mono.error(new UserCreationException("No se pudo registrar el usuario", e));
                 });
+    }
+
+    private final AuthService authService;
+
+    @PostMapping("/login")
+    public Mono<ResponseEntity<String>> login(@RequestBody UserRequest request) {
+        return authService.authenticate(request.getName(), request.getPassword())
+                .map(ResponseEntity::ok)
+                .defaultIfEmpty(ResponseEntity.status(401).body("Credenciales inválidas"));
     }
 }

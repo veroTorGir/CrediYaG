@@ -1,26 +1,19 @@
-package CrediYaG.CrediYaG.infraestructure.driverAdapter.dtos.solicitud;
+package CrediYaG.CrediYaG.infraestructure.driverAdapter.dtos.loan;
 
-import jakarta.validation.constraints.*;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
-
-import java.math.BigDecimal;
 
 @Data
 public class LoanRequest {
-
     @NotBlank(message = "Identity document is required")
     private String identityDocument;
 
-    @NotNull(message = "Loan amount is required")
-    @DecimalMin(value = "100000", message = "Amount must be at least 100,000")
-    @DecimalMax(value = "50000000", message = "Amount cannot exceed 50,000,000")
+    @Min(value = 1, message = "Amount must be greater than zero")
     private int amount;
 
-    @NotNull(message = "Term is required")
-    @Min(value = 6, message = "Minimum term is 6 months")
-    @Max(value = 60, message = "Maximum term is 60 months")
-    private Integer termMonths;
+    @Min(value = 1, message = "Term must be at least 1 month")
+    private int termMonths;
 
-    @NotBlank(message = "Loan type is required")
-    private String loanType;
+    private int loanType;
 }

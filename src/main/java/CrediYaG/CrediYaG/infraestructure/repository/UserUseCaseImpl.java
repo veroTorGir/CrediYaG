@@ -13,7 +13,7 @@ public class UserUseCaseImpl {
     public Mono<Object> saveUser(User user) {
         return userGateway.findByEmail(user.getEmail())
                 .flatMap(existingUser -> Mono.error(new UserException("El correo electrónico ya está registrado")))
-                .switchIfEmpty(userGateway.save(user));
+                .switchIfEmpty(userGateway.saveUser(user));
     }
 
 }
