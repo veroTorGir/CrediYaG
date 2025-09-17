@@ -14,26 +14,10 @@ public class UserGatewayImpl implements UserGateway {
     private final UserMapper userMapper;
     private final UserRepository userDataRepository;
 
+
     @Override
     public Mono<User> saveUser(User user) {
-        // Guardar usuario (puedes delegar al otro método)
-        return save(user);
-    }
-
-    @Override
-    public Mono<User> save(User user) {
         return userDataRepository.save(userMapper.toData(user))
-                .map(userMapper::toDomain);
-    }
-
-    @Override
-    public Mono<Void> delete(Long id) {
-        return userDataRepository.deleteById(id);
-    }
-
-    @Override
-    public Mono<User> searchId(Long id) {
-        return userDataRepository.findById(id)
                 .map(userMapper::toDomain);
     }
 

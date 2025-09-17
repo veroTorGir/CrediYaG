@@ -1,4 +1,11 @@
 package CrediYaG.CrediYaG.domain.model.gateways;
 
-public class LoanGateway {
+import CrediYaG.CrediYaG.domain.model.Loan;
+import reactor.core.publisher.Mono;
+
+public interface LoanGateway {
+
+    Mono<Loan> save(Loan loan);
+
+
 }

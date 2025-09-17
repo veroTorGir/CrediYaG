@@ -24,22 +24,6 @@ public class UserDataAdapter implements UserGateway {
     }
 
     @Override
-    public Mono<User> save(User user) {
-        return saveUser(user);
-    }
-
-    @Override
-    public Mono<Void> delete(Long id) {
-        return userRepository.deleteById(id);
-    }
-
-    @Override
-    public Mono<User> searchId(Long id) {
-        return userRepository.findById(id)
-                .map(userMapper::toDomain);
-    }
-
-    @Override
     public Mono<User> findByEmail(String email) {
         return userRepository.findByEmail(email)
                 .map(userMapper::toDomain);
